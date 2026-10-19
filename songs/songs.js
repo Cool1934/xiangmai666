@@ -32,7 +32,7 @@ var SONGS = [
     },
     {
         id: "002",
-        title: "豌拜集团",
+        title: "豌拜集团？？？？不是音乐",
         artist: "豌拜",
         mp3: "songs/001/无音乐.mp3",
         cover: "songs/001/cover.jpg",
