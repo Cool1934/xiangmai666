@@ -16,11 +16,11 @@
 var SONGS = [
     {
         id: "001",
-        title: "示例歌曲一",
-        artist: "示例歌手",
-        mp3: "songs/001/song.mp3",
+        title: "另类·十年",
+        artist: "小少焱",
+        mp3: "songs/001/另类·十年.mp3",
         cover: "songs/001/cover.jpg",
-        lrc: "songs/001/lyric.lrc"
+        lrc: "songs/001/另类·十年 - 小少焱.lrc"
     },
     {
         id: "002",
