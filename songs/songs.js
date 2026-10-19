@@ -32,9 +32,9 @@ var SONGS = [
     },
     {
         id: "002",
-        title: "暗序里的轻嘿",
-        artist: "ku小酷、DJ寒霜",
-        mp3: "songs/001/暗序里的轻嘿.mp3",
+        title: "豌拜集团",
+        artist: "豌拜",
+        mp3: "songs/001/无音乐.mp3",
         cover: "songs/001/cover.jpg",
         lrc: "songs/001/lyric.lrc"
     },
