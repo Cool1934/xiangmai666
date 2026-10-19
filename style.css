@@ -1,0 +1,275 @@
+/* ===== 基础重置（兼容 IE6/7） ===== */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* ===== 背景层 ===== */
+#bgLayer {
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: #1a1a2e url('') no-repeat center center;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='scale');
+}
+
+#bgMask {
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #000;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+}
+
+/* ===== 主容器 ===== */
+#wrap {
+    width: 860px;
+    height: 560px;
+    margin: 20px auto 0;
+    background: rgba(20, 20, 40, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== 头部 ===== */
+#header {
+    text-align: center;
+    padding: 14px 0 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#siteTitle {
+    color: #fff;
+    font-size: 22px;
+    letter-spacing: 4px;
+}
+
+#siteSub {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ===== 主体布局 ===== */
+#main {
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+}
+
+#leftPanel {
+    float: left;
+    width: 300px;
+    height: 100%;
+    padding: 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-y: auto;
+}
+
+#rightPanel {
+    float: left;
+    width: 520px;
+    height: 100%;
+    padding: 0;
+}
+
+/* ===== 封面 ===== */
+#coverBox {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 14px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    text-align: center;
+}
+
+#coverImg {
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+/* ===== 歌曲信息 ===== */
+#songInfo {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+#songTitle {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#songArtist {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ===== 进度条 ===== */
+#progressBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    margin: 8px 0;
+    overflow: hidden;
+}
+
+#progressFill {
+    width: 0%;
+    height: 100%;
+    background: #4fc3f7;
+}
+
+#timeInfo {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+/* ===== 控制按钮 ===== */
+#controls {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.ctrlBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    padding: 6px 14px;
+    margin: 0 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.ctrlBtn:hover {
+    background: rgba(79, 195, 247, 0.3);
+}
+
+.playBtn {
+    padding: 8px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #4fc3f7;
+    color: #1a1a2e;
+    border: none;
+}
+
+/* ===== 播放列表 ===== */
+#playlistBox {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
+}
+
+#playlistTitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+#playlist {
+    list-style: none;
+}
+
+#playlist li {
+    padding: 6px 8px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#playlist li:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#playlist li.active {
+    color: #4fc3f7;
+    background: rgba(79, 195, 247, 0.1);
+}
+
+/* ===== 歌词区域 ===== */
+#lyricBox {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#lyricInner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.lrcLine {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 15px;
+    line-height: 2.2;
+    transition: all 0.3s;
+}
+
+.lrcLine.current {
+    color: #4fc3f7;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(79, 195, 247, 0.6);
+}
+
+.lrcLine.empty {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+}
+
+/* ===== 底部 ===== */
+#footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#footer p {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 11px;
+}
+
+/* ===== Flash 容器（隐藏） ===== */
+#flashBox {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+}

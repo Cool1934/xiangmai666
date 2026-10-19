@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>我的音乐站</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<!-- 背景层：随歌曲封面切换 -->
+<div id="bgLayer"></div>
+<div id="bgMask"></div>
+
+<div id="wrap">
+    <!-- 头部 -->
+    <div id="header">
+        <h1 id="siteTitle">我的音乐站</h1>
+        <p id="siteSub">自己上传的歌，自己听的快乐</p>
+    </div>
+
+    <!-- 主体：左侧封面+控制，右侧歌词 -->
+    <div id="main">
+        <!-- 左侧：封面与播放控制 -->
+        <div id="leftPanel">
+            <div id="coverBox">
+                <img id="coverImg" src="" alt="cover" />
+            </div>
+
+            <div id="songInfo">
+                <div id="songTitle">尚未选择歌曲</div>
+                <div id="songArtist">&nbsp;</div>
+            </div>
+
+            <!-- 进度条 -->
+            <div id="progressBar">
+                <div id="progressFill"></div>
+            </div>
+            <div id="timeInfo">
+                <span id="curTime">00:00</span>
+                <span id="sep">/</span>
+                <span id="durTime">00:00</span>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div id="controls">
+                <button id="btnPrev" class="ctrlBtn" title="上一首">上一首</button>
+                <button id="btnPlay" class="ctrlBtn playBtn" title="播放/暂停">播放</button>
+                <button id="btnNext" class="ctrlBtn" title="下一首">下一首</button>
+            </div>
+
+            <!-- 歌曲列表 -->
+            <div id="playlistBox">
+                <div id="playlistTitle">歌曲列表</div>
+                <ul id="playlist"></ul>
+            </div>
+        </div>
+
+        <!-- 右侧：歌词 -->
+        <div id="rightPanel">
+            <div id="lyricBox">
+                <div id="lyricInner">
+                    <p class="lrcLine empty">歌词加载中…</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部说明 -->
+    <div id="footer">
+        <p>纯静态音乐站 · 兼容 IE6/IE7 · 部署于 GitHub Pages</p>
+    </div>
+</div>
+
+<!-- 隐藏的音频元素（现代浏览器用） -->
+<audio id="audioEl" preload="auto"></audio>
+
+<!-- 隐藏的 Flash 容器（IE6/7 用） -->
+<div id="flashBox"></div>
+
+<!-- 歌曲数据（内联，避免 JSON 解析兼容问题） -->
+<script type="text/javascript" src="songs/songs.js"></script>
+
+<!-- 播放器核心逻辑 -->
+<script type="text/javascript" src="js/player.js"></script>
+<script type="text/javascript" src="js/lyric.js"></script>
+
+<!-- Flash 降级播放器 -->
+<script type="text/javascript" src="swf/flashplayer.js"></script>
+
+<script type="text/javascript">
+    // 启动
+    window.onload = function () {
+        initPlayer();
+    };
+</script>
+
+</body>
+</html>

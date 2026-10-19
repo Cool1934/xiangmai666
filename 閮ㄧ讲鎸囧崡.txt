@@ -1,0 +1,70 @@
+====================================================
+        我的音乐站 - 使用说明
+====================================================
+
+【如何添加歌曲】
+
+1. 在 songs/ 目录下新建一个文件夹，比如 003/
+2. 放入以下文件：
+   - song.mp3     （音频文件）
+   - cover.jpg    （封面图，建议 300x300 以上）
+   - lyric.lrc    （歌词文件，标准 .lrc 格式）
+3. 打开 songs/songs.js，在 SONGS 数组里加一项：
+
+   {
+       id: "003",
+       title: "你的歌名",
+       artist: "歌手名",
+       mp3: "songs/003/song.mp3",
+       cover: "songs/003/cover.jpg",
+       lrc: "songs/003/lyric.lrc"
+   }
+
+4. 提交到 GitHub，等几秒就生效了！
+
+
+【.lrc 歌词格式】
+
+每行格式：[分:秒.毫秒]歌词内容
+例：
+  [00:00.00]第一句歌词
+  [00:03.50]第二句歌词
+  [00:07.20]第三句歌词
+
+
+【关于 IE6/IE7 播放】
+
+IE6/IE7 不支持 <audio> 标签，需要 Flash 播放器。
+本项目的 flashplayer.js 已预留接口，你需要：
+
+方案A（推荐）：使用 SoundManager2
+  1. 下载：https://github.com/scottschiller/SoundManager2
+  2. 复制 swf/soundmanager2_flash9.swf 到本项目的 swf/ 目录
+  3. 重命名为 player.swf
+  4. SoundManager2 会自动处理所有兼容问题
+
+方案B：用任何支持 ExternalInterface 的 Flash MP3 播放器
+  只要暴露 load(url)/play()/pause()/resume()/setPosition(pct)
+  三个方法即可，替换 swf/player.swf 就行。
+
+现代浏览器（Chrome/Edge/Firefox/Safari/IE9+）不需要 Flash，
+直接用原生 <audio> 播放，开箱即用。
+
+
+【部署到 GitHub Pages】
+
+1. 在 GitHub 上新建一个仓库（比如 my-music）
+2. 把所有文件 push 上去
+3. 进入仓库 Settings → Pages
+4. Source 选 main 分支，点 Save
+5. 等待约 1 分钟
+6. 访问 https://你的用户名.github.io/my-music/
+7. 完成！可以分享给朋友了
+
+
+【本地测试】
+
+直接双击 index.html 打开即可测试（推荐用 Chrome/Edge）。
+注意：歌词文件需要通过 HTTP 加载，如果双击打开报错，
+可以在项目目录下运行：python3 -m http.server 8000
+然后访问 http://localhost:8000
