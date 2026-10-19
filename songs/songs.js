@@ -24,10 +24,10 @@ var SONGS = [
     },
     {
         id: "002",
-        title: "示例歌曲二",
-        artist: "示例歌手",
-        mp3: "songs/002/song.mp3",
-        cover: "songs/002/cover.jpg",
-        lrc: "songs/002/lyric.lrc"
-    }
+        title: "暗序里的轻嘿",
+        artist: "ku小酷、DJ寒霜",
+        mp3: "songs/001/暗序里的轻嘿.mp3",
+        cover: "songs/001/cover.jpg",
+        lrc: "songs/001/lyric.lrc"
+    },
 ];
