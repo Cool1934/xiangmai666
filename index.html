@@ -1,99 +1,172 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>香迈音乐</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<title>论坛列表</title>
+<style type="text/css">
+body {
+    margin: 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    font-family: "Microsoft YaHei", "宋体", sans-serif;
+    font-size: 12px;
+    color: #333;
+}
+.forum-header {
+    background-color: #2b579a;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #1a3a6e;
+}
+.thread-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+.thread-table th {
+    background-color: #d6e0f0;
+    color: #333;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    font-size: 11px;
+}
+.thread-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.thread-title {
+    font-size: 13px;
+    font-weight: bold;
+}
+.thread-meta {
+    font-size: 11px;
+    color: #999;
+    margin-top: 3px;
+}
+.col-img { width: 70px; text-align: center; }
+.col-subject { width: auto; }
+.col-author { width: 80px; }
+.thumb {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    text-align: center;
+    line-height: 60px;
+    font-size: 11px;
+    color: #999;
+    display: inline-block;
+}
+.thumb img {
+    width: 60px;
+    height: 60px;
+    border: none;
+}
+.footer {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+}
+.tip {
+    background-color: #fffbe6;
+    border: 1px solid #ffe58f;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    color: #ad8b00;
+}
+</style>
 </head>
 <body>
 
-<!-- 背景层：随歌曲封面切换 -->
-<div id="bgLayer"></div>
-<div id="bgMask"></div>
+<!-- 论坛头部 -->
+<div class="forum-header">香迈论坛</div>
 
-<div id="wrap">
-    <!-- 头部 -->
-    <div id="header">
-        <h1 id="siteTitle">香迈音乐</h1>
-        <p id="siteSub">自己上传的歌，自己听的快乐</p>
-    </div>
+<br />
 
-    <!-- 主体：左侧封面+控制，右侧歌词 -->
-    <div id="main">
-        <!-- 左侧：封面与播放控制 -->
-        <div id="leftPanel">
-            <div id="coverBox">
-                <img id="coverImg" src="" alt="cover" />
-            </div>
-
-            <div id="songInfo">
-                <div id="songTitle">尚未选择歌曲</div>
-                <div id="songArtist">&nbsp;</div>
-            </div>
-
-            <!-- 进度条 -->
-            <div id="progressBar">
-                <div id="progressFill"></div>
-            </div>
-            <div id="timeInfo">
-                <span id="curTime">00:00</span>
-                <span id="sep">/</span>
-                <span id="durTime">00:00</span>
-            </div>
-
-            <!-- 控制按钮 -->
-            <div id="controls">
-                <button id="btnPrev" class="ctrlBtn" title="上一首">上一首</button>
-                <button id="btnPlay" class="ctrlBtn playBtn" title="播放/暂停">播放</button>
-                <button id="btnNext" class="ctrlBtn" title="下一首">下一首</button>
-            </div>
-
-            <!-- 歌曲列表 -->
-            <div id="playlistBox">
-                <div id="playlistTitle">歌曲列表</div>
-                <ul id="playlist"></ul>
-            </div>
-        </div>
-
-        <!-- 右侧：歌词 -->
-        <div id="rightPanel">
-            <div id="lyricBox">
-                <div id="lyricInner">
-                    <p class="lrcLine empty">歌词加载中…</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 底部说明 -->
-    <div id="footer">
-        <p>纯静态音乐站 · 兼容 IE6/IE7 · 部署于 GitHub Pages</p>
-    </div>
+<!-- 使用提示 -->
+<div class="tip">
+    使用说明：图片放跟这个网页同一个文件夹，改 &lt;img src="图片1.jpg"&gt; 里的文件名就行。没图片就显示灰色占位框，不影响。
 </div>
 
-<!-- 隐藏的音频元素（现代浏览器用） -->
-<audio id="audioEl" preload="auto"></audio>
+<!-- 帖子列表 -->
+<table class="thread-table">
+    <tr>
+        <th class="col-img">图片</th>
+        <th class="col-subject">主题</th>
+        <th class="col-author">作者</th>
+    </tr>
 
-<!-- 隐藏的 Flash 容器（IE6/7 用） -->
-<div id="flashBox"></div>
+    <!-- ====== 下面是帖子模板，复制一整段 <tr>...</tr> 就是一条新帖 ====== -->
 
-<!-- 歌曲数据（内联，避免 JSON 解析兼容问题） -->
-<script type="text/javascript" src="songs/songs.js"></script>
+    <tr>
+        <td class="col-img">
+            <div class="thumb">
+                <a href="大图1.jpg" target="_blank"><img src="图片1.jpg" onerror="this.style.display='none'"></a>
+            </div>
+        </td>
+        <td class="thread-title">
+            第一条帖子标题，把这里的文字改成你要显示的标题
+            <div class="thread-meta">发布于 2026-11-02 10:30</div>
+        </td>
+        <td style="color:#666;">作者名</td>
+    </tr>
 
-<!-- 播放器核心逻辑 -->
-<script type="text/javascript" src="js/player.js"></script>
-<script type="text/javascript" src="js/lyric.js"></script>
+    <tr>
+        <td class="col-img">
+            <div class="thumb">
+                <a href="大图2.jpg" target="_blank"><img src="图片2.jpg" onerror="this.style.display='none'"></a>
+            </div>
+        </td>
+        <td class="thread-title">
+            第二条帖子标题
+            <div class="thread-meta">发布于 2026-11-01 22:15</div>
+        </td>
+        <td style="color:#666;">作者名</td>
+    </tr>
 
-<!-- Flash 降级播放器 -->
-<script type="text/javascript" src="swf/flashplayer.js"></script>
+    <tr>
+        <td class="col-img">
+            <div class="thumb">
+                <a href="大图3.jpg" target="_blank"><img src="图片3.jpg" onerror="this.style.display='none'"></a>
+            </div>
+        </td>
+        <td class="thread-title">
+            第三条帖子标题
+            <div class="thread-meta">发布于 2026-10-30 18:45</div>
+        </td>
+        <td style="color:#666;">作者名</td>
+    </tr>
 
-<script type="text/javascript">
-    // 启动
-    window.onload = function () {
-        initPlayer();
-    };
-</script>
+    <tr>
+        <td class="col-img">
+            <div class="thumb">
+                <a href="大图4.jpg" target="_blank"><img src="图片4.jpg" onerror="this.style.display='none'"></a>
+            </div>
+        </td>
+        <td class="thread-title">
+            第四条帖子标题
+            <div class="thread-meta">发布于 2026-10-28 09:00</div>
+        </td>
+        <td style="color:#666;">你自己</td>
+    </tr>
+
+    <!-- ====== 帖子结束，往上复制 <tr>...</tr> 整段就能加新帖子 ====== -->
+
+</table>
+
+<div class="footer">
+    共 4 条帖子 ｜ 易语言浏览框兼容版
+</div>
 
 </body>
 </html>
+
