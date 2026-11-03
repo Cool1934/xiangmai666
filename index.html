@@ -68,6 +68,7 @@ body {
     width: 60px;
     height: 60px;
     border: none;
+    cursor:pointer;
 }
 .footer {
     margin-top: 8px;
@@ -83,9 +84,66 @@ body {
     font-size: 11px;
     color: #ad8b00;
 }
+
+/* 弹窗遮罩层 IE8兼容 */
+#mask{
+    display:none;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    filter:alpha(opacity=70);
+    z-index:999;
+}
+/* 大图容器 */
+#imgBox{
+    display:none;
+    position:absolute;
+    z-index:1000;
+}
+#bigImg{
+    border:3px solid #fff;
+}
 </style>
 </head>
 <body>
+
+<!-- 弹窗结构 -->
+<div id="mask" onclick="closeImg()"></div>
+<div id="imgBox">
+    <img id="bigImg" onclick="closeImg()" />
+</div>
+
+<script type="text/javascript">
+// IE8兼容打开大图
+function openImg(src){
+    var mask = document.getElementById("mask");
+    var box = document.getElementById("imgBox");
+    var bigImg = document.getElementById("bigImg");
+    bigImg.src = src;
+    mask.style.display = "block";
+    box.style.display = "block";
+
+    // 居中
+    function setCenter(){
+        var w = document.documentElement.clientWidth;
+        var h = document.documentElement.clientHeight;
+        var iw = bigImg.width;
+        var ih = bigImg.height;
+        box.style.left = (w - iw)/2 + "px";
+        box.style.top  = (h - ih)/2 + "px";
+    }
+    // 图片加载完成居中
+    bigImg.onload = setCenter;
+    setCenter();
+}
+function closeImg(){
+    document.getElementById("mask").style.display = "none";
+    document.getElementById("imgBox").style.display = "none";
+}
+</script>
 
 <!-- 论坛头部 -->
 <div class="forum-header">香迈论坛</div>
@@ -110,7 +168,7 @@ body {
     <tr>
         <td class="col-img">
             <div class="thumb">
-                <a href="小酷001.png" target="_blank"><img src="小酷001.png" onerror="this.style.display='none'"></a>
+                <img src="小酷001.png" onclick="openImg('小酷001.png')" onerror="this.style.display='none'">
             </div>
         </td>
         <td class="thread-title">
@@ -123,7 +181,7 @@ body {
     <tr>
         <td class="col-img">
             <div class="thumb">
-                <a href="小酷001.png" target="_blank"><img src="小酷001.png" onerror="this.style.display='none'"></a>
+                <img src="小酷001.png" onclick="openImg('小酷001.png')" onerror="this.style.display='none'">
             </div>
         </td>
         <td class="thread-title">
@@ -139,10 +197,4 @@ body {
 
 </table>
 
-<div class="footer">
-    共 1 条帖子 ｜ 小酷网络科技有限公司
-</div>
-
-</body>
-</html>
-
+<div class="footer
