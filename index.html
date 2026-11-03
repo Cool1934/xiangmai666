@@ -105,6 +105,7 @@ body {
 }
 #bigImg{
     border:3px solid #fff;
+    max-width: none;
 }
 </style>
 </head>
@@ -117,31 +118,54 @@ body {
 </div>
 
 <script type="text/javascript">
-// IE8兼容打开大图
+var bigImg = document.getElementById("bigImg");
+var mask = document.getElementById("mask");
+var imgBox = document.getElementById("imgBox");
+
 function openImg(src){
-    var mask = document.getElementById("mask");
-    var box = document.getElementById("imgBox");
-    var bigImg = document.getElementById("bigImg");
     bigImg.src = src;
     mask.style.display = "block";
-    box.style.display = "block";
-
-    // 居中
-    function setCenter(){
-        var w = document.documentElement.clientWidth;
-        var h = document.documentElement.clientHeight;
-        var iw = bigImg.width;
-        var ih = bigImg.height;
-        box.style.left = (w - iw)/2 + "px";
-        box.style.top  = (h - ih)/2 + "px";
-    }
-    // 图片加载完成居中
-    bigImg.onload = setCenter;
-    setCenter();
+    imgBox.style.display = "block";
 }
+
+// 图片加载完成后执行：缩放+居中
+bigImg.onload = function(){
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+    // 留出边距，防止贴边
+    var maxW = w - 40;
+    var maxH = h - 40;
+
+    var iw = bigImg.width;
+    var ih = bigImg.height;
+
+    // 等比例缩小，如果图片太大
+    if(iw > maxW || ih > maxH){
+        var scale = 1;
+        var scaleW = maxW / iw;
+        var scaleH = maxH / ih;
+        if(scaleW < scaleH){
+            scale = scaleW;
+        }else{
+            scale = scaleH;
+        }
+        bigImg.width = iw * scale;
+        bigImg.height = ih * scale;
+    }
+
+    // 居中计算
+    var nowW = bigImg.width;
+    var nowH = bigImg.height;
+    imgBox.style.left = (w - nowW)/2 + "px";
+    imgBox.style.top  = (h - nowH)/2 + "px";
+}
+
 function closeImg(){
-    document.getElementById("mask").style.display = "none";
-    document.getElementById("imgBox").style.display = "none";
+    mask.style.display = "none";
+    imgBox.style.display = "none";
+    // 关闭重置尺寸，下次打开原图尺寸重新计算
+    bigImg.width = "";
+    bigImg.height = "";
 }
 </script>
 
@@ -191,10 +215,13 @@ function closeImg(){
         <td style="color:#666;">大帅</td>
     </tr>
 
-    
-
     <!-- ====== 帖子结束，往上复制 <tr>...</tr> 整段就能加新帖子 ====== -->
 
 </table>
 
-<div class="footer
+<div class="footer">
+    共 2 条帖子 ｜ 小酷网络科技有限公司
+</div>
+
+</body>
+</html>
